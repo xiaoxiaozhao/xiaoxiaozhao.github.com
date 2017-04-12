@@ -1,6 +1,6 @@
 #!/bin/sh
 ../../../hexo generate
-cp -R ../../public/* .deploy/xiaoxiaozhao.github.io
+cp -R ../../public/* ../../.deploy/xiaoxiaozhao.github.io
 cd .deploy/xiaoxiaozhao.github.io
 git add .
 git commit -m "update"
