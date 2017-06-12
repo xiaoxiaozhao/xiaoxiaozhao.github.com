@@ -16,10 +16,10 @@
 <meta property="og:site_name" content="Hi,I'm xiaozhao">
 <meta property="og:description" content="Redis高可用性资料整理 Redis + Sentinel 简介 Redis-sentinel是Redis实例的监控管理、通知和实例失效备援服务，是Redis集群的管理工具。在一般的分布式中心节点数据库中，Redis-sentinel的作用是中心节点的工作，监控各个其他节点的工作情况并且进行故障恢复，来提高集群的高可用性。 Redis-sentinel的三大功能: 监测、通知、自动故障恢复。首先">
 <meta property="og:image" content="http://https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87%20%E7%A7%91%E6%AF%94&hs=2&pn=30&spn=0&di=106464439290&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=903433201%2C4050871549&os=713591762%2C3380927615&simid=3378589647%2C369851135&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87%20%E7%A7%91%E6%AF%94&objurl=http%3A%2F%2Fhenan.china.com.cn%2Fuploadfile%2F2016%2F0414%2F1460624586560448.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Ff1_z%26e3By57pi_z%26e3BvgAzdH3Fda8mAzdH3Fa989AzdH3F9dncbm8_b_z%26e3Bfip4s&gsm=0">
-<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/1.png">
-<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/2.png">
-<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/3.png">
-<meta property="og:updated_time" content="2017-06-12T07:56:55.548Z">
+<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/1.png">
+<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/2.png">
+<meta property="og:image" content="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/3.png">
+<meta property="og:updated_time" content="2017-06-12T09:12:31.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hi,I'm xiaozhao">
 <meta name="twitter:description" content="Redis高可用性资料整理 Redis + Sentinel 简介 Redis-sentinel是Redis实例的监控管理、通知和实例失效备援服务，是Redis集群的管理工具。在一般的分布式中心节点数据库中，Redis-sentinel的作用是中心节点的工作，监控各个其他节点的工作情况并且进行故障恢复，来提高集群的高可用性。 Redis-sentinel的三大功能: 监测、通知、自动故障恢复。首先">
@@ -279,7 +279,7 @@ CentOS B—&gt;Keepalived Backup &amp;&amp; Redis Backup
 <p>codis-config 是 Codis 的管理工具, 支持包括, 添加/删除 Redis 节点, 添加/删除 Proxy 节点, 发起数据迁移等操作. codis-config 本身还自带了一个 http server, 会启动一个 dashboard, 用户可以直接在浏览器上观察 Codis 集群的运行状态.</p>
 <p>codis-server 是 Codis 项目维护的一个 Redis 分支, 基于 2.8.13 开发, 加入了 slot 的支持和原子的数据迁移指令. Codis 上层的 codis-proxy 和 codis-config 只能和这个版本的 Redis 交互才能正常运行.</p>
 <p>Codis 依赖 ZooKeeper 来存放数据路由表和 codis-proxy 节点的元信息, codis-config 发起的命令都会通过 ZooKeeper 同步到各个存活的 codis-proxy.</p>
-<p>Codis 支持按照 Namespace 区分不同的产品, 拥有不同的 product name 的产品, 各项配置都不会冲突.<br>目前 Codis 已经是稳定阶段，目前豌豆荚已经在使用该系统。架构如下<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/1.png" alt=""></p>
+<p>Codis 支持按照 Namespace 区分不同的产品, 拥有不同的 product name 的产品, 各项配置都不会冲突.<br>目前 Codis 已经是稳定阶段，目前豌豆荚已经在使用该系统。架构如下<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/1.png" alt=""></p>
 <p>特性：</p>
 <ol>
 <li><p>自动平衡</p>
@@ -303,7 +303,7 @@ CentOS B—&gt;Keepalived Backup &amp;&amp; Redis Backup
 <li><p><a href="http://www.tuicool.com/articles/U7rqAfE" target="_blank" rel="external">http://www.tuicool.com/articles/U7rqAfE</a></p>
 </li>
 </ol>
-<h2 id="redis-failover"><a href="#redis-failover" class="headerlink" title="redis_failover"></a>redis_failover</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>使用ruby编写，通过NodeManager检查redis服务器的状态，然后更新zookeeper中的列表，zookeeper来维护当前可用服务器列表。<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/2.png" alt=""></p>
+<h2 id="redis-failover"><a href="#redis-failover" class="headerlink" title="redis_failover"></a>redis_failover</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>使用ruby编写，通过NodeManager检查redis服务器的状态，然后更新zookeeper中的列表，zookeeper来维护当前可用服务器列表。<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/2.png" alt=""></p>
 <p>zk中保存三个列表：master、slaves、unavailable。NodeManager通过配置文件读取node列表。每个node一个NodeWatcher线程，每隔2秒钟检查一次node的状态：syncing、available、unavailable如果node连续max_failures次失败的话，设置为unavailable。</p>
 <p>NodeWatcher将 状态存放在NodeManager的状态queue中，NodeManager的一个线程定期的检查queue中的状态，对状态进行处理：</p>
 <ul>
@@ -319,7 +319,7 @@ CentOS B—&gt;Keepalived Backup &amp;&amp; Redis Backup
 <li>只有一个active的NodeManager节点，如果该NodeManager节点的网络出现问题，则会出现误操作的现象。</li>
 </ul>
 <h4 id="参考-4"><a href="#参考-4" class="headerlink" title="参考"></a>参考</h4><p><a href="http://github.com/ryanlecompte/redis_failover" target="_blank" rel="external">http://github.com/ryanlecompte/redis_failover</a></p>
-<h2 id="Sina微博HA实现"><a href="#Sina微博HA实现" class="headerlink" title="Sina微博HA实现"></a>Sina微博HA实现</h2><p>由于自身实际架构往往会复杂，或者考虑的角度比较多，单独做了一个项目，名为hypnos其工作原理示意如下：<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/10/redis-HA/3.png" alt=""></p>
+<h2 id="Sina微博HA实现"><a href="#Sina微博HA实现" class="headerlink" title="Sina微博HA实现"></a>Sina微博HA实现</h2><p>由于自身实际架构往往会复杂，或者考虑的角度比较多，单独做了一个项目，名为hypnos其工作原理示意如下：<br><img src="https://github.com/xiaoxiaozhao/xiaoxiaozhao.github.com/blob/master/2017/06/12/redis-HA/3.png" alt=""></p>
 <p>至于sina的Hypnos的redis HA方案，是sina的定制化HA方案，没有开源，只能去了解一下架构和相关的资料</p>
 <h3 id="参考-5"><a href="#参考-5" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.xdata.me/?p=353" target="_blank" rel="external">http://www.xdata.me/?p=353</a></p>
 
