@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hi,I&#39;m xiaozhao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Docker+MongoDB Sharding&amp;amp;HA本文使用Docker作为MongoDB容器，配置部署一个高可用的MongoDB集群，实现分片，热备份等HA效果 1.环境搭建系统为ubuntu 14.04，其他版本可能运行docker有问题。首先建立一个副本集启动的images，容器Dockerfile文件如下：  之后使用images启动container（slave1，slave2，">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hi,I'm xiaozhao">
+<meta property="og:url" content="http://yoursite.com/2017/06/14/Docker_MongoDB/index.html">
+<meta property="og:site_name" content="Hi,I'm xiaozhao">
+<meta property="og:description" content="Docker+MongoDB Sharding&amp;amp;HA本文使用Docker作为MongoDB容器，配置部署一个高可用的MongoDB集群，实现分片，热备份等HA效果 1.环境搭建系统为ubuntu 14.04，其他版本可能运行docker有问题。首先建立一个副本集启动的images，容器Dockerfile文件如下：  之后使用images启动container（slave1，slave2，">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/1.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/2.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/3.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/4.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/5.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/6.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/7.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/8.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/9.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/10.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/11.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/12.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/13.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/14.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/15.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/16.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/17.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/18.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/19.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/20.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/21.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/22.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/23.png">
+<meta property="og:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/24.png">
+<meta property="og:updated_time" content="2017-06-14T06:27:51.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hi,I'm xiaozhao">
+<meta name="twitter:description" content="Docker+MongoDB Sharding&amp;amp;HA本文使用Docker作为MongoDB容器，配置部署一个高可用的MongoDB集群，实现分片，热备份等HA效果 1.环境搭建系统为ubuntu 14.04，其他版本可能运行docker有问题。首先建立一个副本集启动的images，容器Dockerfile文件如下：  之后使用images启动container（slave1，slave2，">
+<meta name="twitter:image" content="http://yoursite.com/2017/06/14/Docker_MongoDB/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hi,I&#39;m xiaozhao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hi,I&#39;m xiaozhao</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learning &amp; developing</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker_MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/14/Docker_MongoDB/" class="article-date">
+  <time datetime="2017-06-14T06:27:51.166Z" itemprop="datePublished">2017-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker-MongoDB-Sharding-amp-HA"><a href="#Docker-MongoDB-Sharding-amp-HA" class="headerlink" title="Docker+MongoDB Sharding&amp;HA"></a>Docker+MongoDB Sharding&amp;HA</h1><pre><code>本文使用Docker作为MongoDB容器，配置部署一个高可用的MongoDB集群，实现分片，热备份等HA效果
+</code></pre><h2 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h2><p>系统为ubuntu 14.04，其他版本可能运行docker有问题。首先建立一个副本集启动的images，容器Dockerfile文件如下：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/1.png" alt=""></p>
+<p>之后使用images启动container（slave1，slave2，slave3组成一个副本集（repset）作为片1，slave4作为片2，slave5，slave6组成一个副本集（depset）作为片3）</p>
+<h4 id="Slave1："><a href="#Slave1：" class="headerlink" title="Slave1："></a>Slave1：</h4><p><img src="/2017/06/14/Docker_MongoDB/2.png" alt=""></p>
+<h4 id="Slave2："><a href="#Slave2：" class="headerlink" title="Slave2："></a>Slave2：</h4><p><img src="/2017/06/14/Docker_MongoDB/3.png" alt=""></p>
+<h4 id="Slave3"><a href="#Slave3" class="headerlink" title="Slave3"></a>Slave3</h4><p><img src="/2017/06/14/Docker_MongoDB/4.png" alt=""></p>
+<p>上面是三个container节点的网络分配情况，现在用这三个containers组成一个副本集做为mongo的分片1。</p>
+<p>下面对副本集repset进行初始化操作：</p>
+<ul>
+<li>登入172.17.0.2节点（这里也可以登录其他两个节点），注意这里用admin账户登录：</li>
+<li>Mongo 172.17.0.2:10000/admin</li>
+<li><p>对repset副本集进行初始化：</p>
+<p>  config = {_id:”repset”,members:[<br>  … {_id:0,host:’172.17.0.2:10000’},<br>  … {_id:1,host:’172.17.0.3:10000’},<br>  … {_id:2,host:’172.17.0.4:10000’}]<br>  … }<br>  rs.initiate(config);</p>
+</li>
+</ul>
+<p>提示信息如下说明初始化成功</p>
+<pre><code>{
+   &quot;info&quot; : &quot;Config now saved locally.  Should come online in about a minute.&quot;,
+   &quot;ok&quot; : 1
+}
+</code></pre><p>Mongos需要一个配置服务器节点，这里再启动一个container作为配置服务器使用，这里暂时不对配置服务器进行副本集操作。</p>
+<p>配置服务器的dockerfile生成images只需要执行以下命令：(注意：需要在dockerfile的文件夹下执行）</p>
+<pre><code>build --tag &lt;name&gt; .
+</code></pre><p><img src="/2017/06/14/Docker_MongoDB/5.png" alt=""></p>
+<p>配置服务器的网络配置</p>
+<p><img src="/2017/06/14/Docker_MongoDB/6.png" alt=""></p>
+<p>首先对数据进行导入，之后再启动一个mongo节点作为mongos服务的节点。Mongos的image建立：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/7.png" alt=""></p>
+<p>Mongos节点网络配置：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/8.png" alt=""></p>
+<p>下面启动mongos对分片进行管理，连接mongos的服务：mongo 172.17.0.6:10000/admin（这里必须要使用admin账户）<br>首先将repset副本集作为片加入mongos中</p>
+<pre><code>db.runCommand({addshard:”repset/172.17.0.2:10000”,allowLocal:true}）
+</code></pre><p>成功即可看到成功的信息。之后指定要进行分片的数据库，这里要将tpload进行分片</p>
+<pre><code>db.runCommand({“enablesharding”:”foo”}）
+</code></pre><p>最后就可以使用shardcollection对具体的collection进行分片了，这里暂时使用check_time和_id对数据库进行分片</p>
+<pre><code>db.runCommand({“shardcollection”:”tpload.data”,”key”:{“check_time”:1,”_id”:1}})
+</code></pre><p>这里由于只有副本集repset作为一片加入其中，所以在mongos里面只能看到一个片。下面，将数据导入数据库中，这里要记住，使用mongos的节点进行导入，这样mongos负责路由找到对应存放数据的片，以用户的角度来看，就感觉是一个整体的mongo数据库服务。</p>
+<p>这里的数据使用tploader的数据，是两天的交易信息，用个脚本将数据统一插入数据库中，数据库为tpload，collection为data。</p>
+<p><img src="/2017/06/14/Docker_MongoDB/9.png" alt=""></p>
+<p>这里因为数据库的分片节点只有一个，也就是repset副本集，数据量也全部存放在repset的副本集节点上，在mongos中可以查看分片情况：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/10.png" alt=""></p>
+<p>这里再增加两个片，一个片为单独的mongo节点，一个片为一个双节点组成的副本集。</p>
+<pre><code>mongo 172.17.0.6:10000/admin
+db.runCommand({addshard:”depset/172.17.0.8:10000”,allowLocal:true}）
+</code></pre><p>我们可以看一下chunks移动的情况：<br>这里快是一块一块的进行移动，直至两边块数平衡：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/11.png" alt=""></p>
+<p><img src="/2017/06/14/Docker_MongoDB/12.png" alt=""></p>
+<p>移动快的速度还是比较快的。<br>下面我们再增加一个副本集进去，可以观察块移动的情况</p>
+<pre><code>db.runCommand({addshard:”172.17.0.7:10000”,allowLocal:true})
+</code></pre><p><img src="/2017/06/14/Docker_MongoDB/13.png" alt=""></p>
+<p>由于mongos已经在前面对tpload数据库进行分片的初始化了，这里就自动由mongos对数据库进行分片。<br>结果如下图：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/14.png" alt=""></p>
+<p><img src="/2017/06/14/Docker_MongoDB/15.png" alt=""></p>
+<p>下面是slave5和slave6组成的副本集的镜像：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/16.png" alt=""></p>
+<pre><code>&gt;mongo 172.17.0.8:10000/admin
+&gt;config = {_id:&quot;test&quot;,members:[
+... {_id:0,host:&apos;172.17.0.8:10000&apos;},
+... {_id:1,host:&apos;172.17.0.9:10000&apos;}]
+... }
+</code></pre><p>成功信息如下：</p>
+<pre><code>&gt;rs.initiate(config);
+{
+   &quot;info&quot; : &quot;Config now saved locally.  Should come online in about a minute.&quot;,
+   &quot;ok&quot; : 1
+}
+</code></pre><p>下图展示了数据库的分片情况：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/17.png" alt=""></p>
+<p>这里我们模拟一个小场景，就是在整个集群运行一定时间后，发现片键不是很合适，应该修改，这里可以利用如下一系列操作，对数据分片进行转储，将数据分片转存到一个片中，之后恢复，之后重新定义片键。</p>
+<p>（1）首先将repset移出 db.runCommand({removeShard:”repset”}),注意，这里会有一个状态值，必须轮询进行操作，知道state变为complete</p>
+<p><img src="/2017/06/14/Docker_MongoDB/18.png" alt=""></p>
+<p><img src="/2017/06/14/Docker_MongoDB/19.png" alt=""></p>
+<p><img src="/2017/06/14/Docker_MongoDB/20.png" alt=""></p>
+<p>Test.data  key:check_time<br>插入0805一天的信息之后chunk值分配如下：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/21.png" alt=""></p>
+<p>Chunks值如下：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/22.png" alt=""></p>
+<p><img src="/2017/06/14/Docker_MongoDB/23.png" alt=""></p>
+<p>如果将0807一天的日志增加进去分片情况如下：</p>
+<p><img src="/2017/06/14/Docker_MongoDB/24.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/14/Docker_MongoDB/" data-id="cj3wm7m570000ikgemxw1sb72" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/14/redis-HA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/14/redis-HA/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/14/Docker_MongoDB/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 xiaozhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
